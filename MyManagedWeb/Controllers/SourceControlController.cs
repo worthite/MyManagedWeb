@@ -25,6 +25,17 @@ namespace MyManagedWeb.Controllers
 
         [System.Web.Http.HttpGet]
         [System.Web.Http.AllowAnonymous]
+        [System.Web.Http.ActionName("Test")]
+        [System.Web.Http.Route("api/SourceControl/Test")]
+        public async Task<string> Test()
+        {
+            string t = await Task.Run(() => DateTime.UtcNow.ToLongTimeString());
+
+            return t;
+        }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.AllowAnonymous]
         [System.Web.Http.Route("api/SourceControl")]
         public async Task<HttpResponseMessage> Index(string TenantID, string Sub, string resourcegroup,string AppServiceName,string Repo, string Branch)
         {
