@@ -24,10 +24,9 @@ namespace MyManagedWeb.Controllers
         private static string vaultname = ConfigurationManager.AppSettings["KeyVault"];
 
         [System.Web.Http.HttpGet]
-        
-        [System.Web.Http.ActionName("Setup")]
+        [System.Web.Http.AllowAnonymous]
         [System.Web.Http.Route("api/SourceControl")]
-        public async Task<HttpResponseMessage> Setup(string TenantID, string Sub, string resourcegroup,string AppServiceName,string Repo, string Branch)
+        public async Task<HttpResponseMessage> Index(string TenantID, string Sub, string resourcegroup,string AppServiceName,string Repo, string Branch)
         {
             string StorageConnectionString = await GetSecret(vaultname, "ManagementStorage");
             var storageAccount = CloudStorageAccount.Parse(StorageConnectionString);
